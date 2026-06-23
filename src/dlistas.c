@@ -10,9 +10,9 @@ typedef struct DNodo {
 } DNodo;
 
 DNodo *dnodo_crear(int dato){
-    DNodo *n = malloc(sizeof(DNodo));
-    if (n) {n -> dato = dato; n -> next = NULL; n -> prev = NULL; }
-    return n;
+    DNodo *nuevo = malloc(sizeof(DNodo));
+    if (nuevo) {nuevo -> dato = dato; nuevo -> next = NULL; nuevo -> prev = NULL; }
+    return nuevo;
 }
 
 void dlista_imprimir(DNodo *head){
@@ -58,12 +58,47 @@ void dlista_insertar_final(DNodo **head, int dato){
     }
 }
 
-int main(void){
+// TODO
+void dlista_insertar(DNodo **head, int dato, int p){
 
-    DNodo ** head = malloc(sizeof(DNodo **));
-    *head = dnodo_crear(1);
-    dlista_insertar_final(head, 2);
-    dlista_insertar_final(head, 3);
-    dlista_imprimir(*head); 
+}
+
+
+DNodo *dlista_buscar(DNodo **head, int dato){
+    DNodo *cur = *head;
+    // busqueda lineal
+    while(cur){
+        if(cur -> dato == dato) return cur;
+        else if (!cur -> dato) return NULL;
+        cur = cur -> next;
+    }
+    return NULL;
+}
+
+void dlista_eliminar_nodo(DNodo **head, DNodo *nodo){
+    // nodo es primer elemento
+    if(!nodo -> prev){
+        (nodo -> next) -> prev = NULL;
+        *head = nodo -> next;
+    } 
+
+    // nodo es ultimo
+    else if(!nodo ->next){
+        (nodo -> prev) -> next = NULL;
+    }
+
+    // cualquier otra posicion
+
+    else {
+        (nodo -> prev) -> next = nodo -> next;
+        (nodo -> next) -> prev = nodo -> prev;
+    }
+
+    free(nodo);
+
+
+}
+
+void dlista_liberar(DNodo **head){
 
 }
