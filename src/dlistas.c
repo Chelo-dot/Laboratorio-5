@@ -1,13 +1,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include "dlista.h"
+#include "dlistas.h"
 
-typedef struct DNodo {
-    int dato;
-    struct DNodo *next;
-    struct DNodo *prev;
-} DNodo;
+
 
 DNodo *dnodo_crear(int dato){
     DNodo *nuevo = malloc(sizeof(DNodo));
@@ -71,6 +67,12 @@ void dlista_insertar(DNodo **head, int dato, int p){
     }
 
     for(int i = 0; i <= p; i++){
+
+        if(!cur->next&&i!=p){
+            printf("Error: posicion invalida elemento no añadido\n");
+            return; 
+        }
+
         if(i==p){
             //puntero de nuevo
             nuevo->prev = cur->prev;
@@ -87,6 +89,7 @@ void dlista_insertar(DNodo **head, int dato, int p){
         }
         cur = cur->next;
     }
+
 
 }
 
