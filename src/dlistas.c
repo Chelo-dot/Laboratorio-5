@@ -58,8 +58,35 @@ void dlista_insertar_final(DNodo **head, int dato){
     }
 }
 
-// TODO
+
 void dlista_insertar(DNodo **head, int dato, int p){
+    DNodo *nuevo = dnodo_crear(dato);
+    DNodo *cur = *head;
+
+    if(p == 0){
+        nuevo -> next = *head;
+        (*head) -> prev = nuevo;
+        *head = nuevo;
+        return;
+    }
+
+    for(int i = 0; i <= p; i++){
+        if(i==p){
+            //puntero de nuevo
+            nuevo->prev = cur->prev;
+            nuevo->next = cur;
+
+            //puntero de prev
+            (cur->prev)->next = nuevo;
+            
+
+            //puntero de cur
+            cur->prev=nuevo;
+            return;
+
+        }
+        cur = cur->next;
+    }
 
 }
 
@@ -100,5 +127,14 @@ void dlista_eliminar_nodo(DNodo **head, DNodo *nodo){
 }
 
 void dlista_liberar(DNodo **head){
+    DNodo *cur = *head;
+    while(cur){
+        if(cur->next){
+            cur = cur->next;
+            free(cur->prev);
+        }
+        else {free(cur); break;}
+    } 
 
 }
+
