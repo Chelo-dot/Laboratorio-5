@@ -12,6 +12,12 @@ DNodo *dnodo_crear(int dato){
 }
 
 void dlista_imprimir(DNodo *head){
+
+    if(!head){
+        printf("Error: head no valido\n");
+        return;
+    }
+
     DNodo *cur = head;
     DNodo *ultimo = NULL;
     printf("FWD: ");
@@ -32,6 +38,12 @@ void dlista_imprimir(DNodo *head){
 }
 
 void dlista_insertar_inicio(DNodo **head, int dato){
+
+    if(!*head){
+        printf("Error: head no valido\n");
+        return;
+    }
+
     DNodo *nuevo = dnodo_crear(dato);
 
     nuevo -> next = *head;
@@ -41,6 +53,12 @@ void dlista_insertar_inicio(DNodo **head, int dato){
 }
 
 void dlista_insertar_final(DNodo **head, int dato){
+
+    if(!*head){
+        printf("Error: head no valido\n");
+        return;
+    }
+
     DNodo * nuevo = dnodo_crear(dato);
 
     DNodo *cur = *head;
@@ -56,6 +74,12 @@ void dlista_insertar_final(DNodo **head, int dato){
 
 
 void dlista_insertar(DNodo **head, int dato, int p){
+
+    if(!*head){
+        printf("Error: head no valido\n");
+        return;
+    }
+
     DNodo *nuevo = dnodo_crear(dato);
     DNodo *cur = *head;
 
@@ -95,6 +119,12 @@ void dlista_insertar(DNodo **head, int dato, int p){
 
 
 DNodo *dlista_buscar(DNodo **head, int dato){
+
+    if(!*head){
+        printf("Error: head no valido\n");
+        return NULL;
+    }
+
     DNodo *cur = *head;
     // busqueda lineal
     while(cur){
@@ -106,6 +136,11 @@ DNodo *dlista_buscar(DNodo **head, int dato){
 }
 
 void dlista_eliminar_nodo(DNodo **head, DNodo *nodo){
+
+    if(!*head || !nodo){
+        printf("Error: puntero no valido\n");
+        return;
+    }   
     // nodo es primer elemento
     if(!nodo -> prev){
         (nodo -> next) -> prev = NULL;
@@ -138,6 +173,7 @@ void dlista_liberar(DNodo **head){
         }
         else {free(cur); break;}
     } 
+    *head = NULL;
 
 }
 
