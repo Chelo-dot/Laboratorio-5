@@ -43,3 +43,27 @@ void dlista_insertar_inicio(DNodo **head, int dato){
     *head = nuevo;
     
 }
+
+void dlista_insertar_final(DNodo **head, int dato){
+    DNodo * nuevo = dnodo_crear(dato);
+
+    DNodo *cur = *head;
+    while(cur){
+        if(cur -> next) cur = cur -> next;
+        else {
+            cur -> next = nuevo;
+            nuevo -> prev = cur;
+            return;
+        }
+    }
+}
+
+int main(void){
+
+    DNodo ** head = malloc(sizeof(DNodo **));
+    *head = dnodo_crear(1);
+    dlista_insertar_final(head, 2);
+    dlista_insertar_final(head, 3);
+    dlista_imprimir(*head); 
+
+}
