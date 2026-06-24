@@ -4,7 +4,6 @@
 #include "dlistas.h"
 
 
-
 DNodo *dnodo_crear(int dato){
     DNodo *nuevo = malloc(sizeof(DNodo));
     if (nuevo) {nuevo -> dato = dato; nuevo -> next = NULL; nuevo -> prev = NULL; }
