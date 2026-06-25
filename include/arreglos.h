@@ -1,13 +1,14 @@
 #ifndef ARREGLOS_H
 #define ARREGLOS_H
 
-typedef struct Array {
-    int *puntero;
-    int tamaño;
-} Array;
+typedef struct {
+    int *data;
+    size_t size;
+    size_t capacidad;
+} DinaArray;
 
-Array crear_arreglo(int n);
+DinaArray crear_arreglo(int n);
 
-void imprimir_arreglo(Array a);
+void imprimir_arreglo(DinaArray a);
 
 #endif
