@@ -11,4 +11,10 @@ DinaArray crear_arreglo(int n);
 
 void imprimir_arreglo(DinaArray a);
 
+DinaArray agregar_elemento(DinaArray a, int valor, int indice);
+
+DinaArray eliminar_elemento(DinaArray a, int indice);
+
+void liberar_arreglo(DinaArray a);
+
 #endif
