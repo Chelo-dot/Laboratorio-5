@@ -3,10 +3,16 @@
 #include "arreglos.h"
 
 
-/*inicializa todos los elementos en cero para no tener errores*/
+/*inicializa todos los elementos en cero para evitar */
 DinaArray crear_arreglo(size_t n){
 
     int *ptr = (int *)calloc(n, sizeof(int));
+
+    if (ptr == NULL){
+        fprintf(stderr, "Error al inicializar la memoria\n");
+        exit(EXIT_FAILURE);
+    }
+
     DinaArray arreglo;
 
     arreglo.data = ptr;
@@ -18,28 +24,44 @@ DinaArray crear_arreglo(size_t n){
 
 void imprimir_arreglo(DinaArray a){
 
-    for (int i = 0; i < a.size; i++){
+    if (a.data == NULL){
+        fprintf(stderr, "Error con el arreglo dinámico\n");
+        exit(EXIT_FAILURE);
+    }
+
+    printf("[");
+    for (size_t i = 0; i < a.size; i++){
         printf("%d", *(a.data + i));
     }
     printf("] size=%zu cap=%zu\n", a.size, a.capacidad);
 
 }
 
-/* Sobreescribe el valor si ya había sido asignado y amplia el tamaño del arreglo uno más del índice indicado */
-DinaArray agregar_elemento(DinaArray a, int indice, int valor){
+/*Asume que el arreglo está llenado en orden y los valores no inicializados están al final*/
+DinaArray agregar_elemento(DinaArray a, size_t indice, int valor){
 
-    if (a.data == NULL){
-        return a;
-    }
+    if ((a.capacidad = 0)||(indice >= a.size)){
 
-    if (a.size < indice){
-        int *nuevo = realloc(a.data, (indice + 1)*sizeof(int));
+        int *nuevo = realloc(a.data, (2*a.size)*sizeof(int));
+
+        if (nuevo == NULL){
+                fprintf(stderr, "Error al expandir la memoria la memoria\n");
+                exit(EXIT_FAILURE);
+            }
+
         a.data = nuevo;
         a.size = 2*a.size;
         a.capacidad = a.capacidad + 2*a.size;
     }
 
-    *(a.data + indice) = valor;
+    if (indice >= a.size){
+        *(a.data + indice) = valor;
+    } else {
+        for (size_t i = a.size -1; i < indice; i--){
+            *(a.data + indice) = *(a.data + indice - 1);
+        }
+        *(a.data + indice) = valor;
+    }
 
     a.capacidad -= 1;
 
@@ -50,10 +72,15 @@ DinaArray agregar_elemento(DinaArray a, int indice, int valor){
 /*Con el arreglo existente, desplaza una posición menos todos los elementos del arreglo y se declara el último elemento como cero*/
 DinaArray eliminar_elemento(DinaArray a, int indice){
 
-    if ((a.data == NULL)||(a.size < indice)){
-        return a;
+    if (a.data == NULL){
+        fprintf(stderr, "Error al expandir la memoria la memoria\n");
+        exit(EXIT_FAILURE);
     }
 
+    if (a.size < indice){
+        printf("Intenta eliminar un elemento que no existe");
+        return a;
+    }
 
     if (indice == (a.size-1)){
         *(a.data + indice) = 0;
@@ -73,4 +100,7 @@ void liberar_arreglo(DinaArray a){
 
     free(a.data);
     a.data = NULL;
-}
+    a.size = 0;
+    a.capacidad = 0;
+
+} 
