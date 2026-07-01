@@ -3,7 +3,7 @@
 #include <string.h>
 #include "arreglos.h"
 
-/*inicializa todos los elementos en cero para evitar */
+//inicializa todos los elementos en cero para evitar
 DinaArray crear_arreglo(int n){
 
     int *ptr = (int *)calloc(n, sizeof(int));
@@ -37,7 +37,7 @@ void imprimir_arreglo(DinaArray a){
 
 }
 
-/*Asume que el arreglo está llenado en orden y los valores no declarados están al final*/
+//Asume que el arreglo está llenado en orden y los valores no declarados están al final
 void agregar_elemento(DinaArray *a, int indice, int valor){
 
     int nuevo_tamaño = indice + 2;
@@ -75,7 +75,7 @@ void agregar_elemento(DinaArray *a, int indice, int valor){
 }
 
 
-/*Con el arreglo existente, desplaza una posición menos todos los elementos del arreglo y se declara el último elemento como cero*/
+//Con el arreglo existente, desplaza una posición menos todos los elementos del arreglo y se declara el último elemento como cero
 void eliminar_elemento(DinaArray *a, int indice){
 
     if (a->data == NULL){
