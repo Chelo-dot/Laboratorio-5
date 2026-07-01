@@ -57,6 +57,12 @@ Dependiendo de la estructura de datos, se implementaron funciones como:
 
 ## Compilación
 
+Primero, debe crear un copia del repositorio:
+
+```bash
+git clone https://github.com/Chelo-dot/Laboratorio-5.git
+```
+
 Para compilar el proyecto, abra una terminal en el directorio del repositorio y ejecute:
 
 ```bash
