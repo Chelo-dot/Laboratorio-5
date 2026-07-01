@@ -1,14 +1,14 @@
-CC = gcc 
+CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
-SRCS = main.c src/dlistas.c src/arreglos.c src/stack_arr.c
+SRCS = main.c src/arreglos.c src/listas.c src/dlistas.c src/stack_arr.c
 OBJS = $(SRCS:.c=.o)
 
 programa: $(OBJS)
 	$(CC) $(CFLAGS) -o programa $(OBJS)
 
-%.o: %.CC
+%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
-	rm -f programa *.o
+	rm -f programa *.o src/*.o
