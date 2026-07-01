@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include "stack_arr.h"
+
+void sa_init(StackArr *s, int cap){
+
+    DinaArray arr = crear_arreglo(cap);
+    &s->arr;
+
+}
+
+void sa_push(StackArr *s, int valor){
+
+    agregar_elemento(s->arr.data, s->arr.size - 1, valor);
+
+}
+
+int sa_pop(StackArr *s){
+
+    int valor_arriba = *(s->arr.data + (s->arr.size - 1));
+    eliminar_elemento(s->arr.data, s->arr.size - 1);
+    return valor_arriba;
+
+}
+
+void sa_free(StackArr *s){
+
+    liberar_arreglo(s->arr.data);
+
+}
