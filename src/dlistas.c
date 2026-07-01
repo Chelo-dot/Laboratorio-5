@@ -112,8 +112,6 @@ void dlista_insertar(DNodo **head, int dato, int p){
         }
         cur = cur->next;
     }
-
-
 }
 
 
