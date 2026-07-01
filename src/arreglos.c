@@ -41,7 +41,6 @@ void imprimir_arreglo(DinaArray a){
 void agregar_elemento(DinaArray *a, int indice, int valor){
 
     int nuevo_tamaño = indice + 2;
-    int tamaño_original = indice;
 
     if ((a->capacidad == 0)||(indice >= a->size)){
 
@@ -59,11 +58,9 @@ void agregar_elemento(DinaArray *a, int indice, int valor){
         a->data = nuevo;
         a->size = nuevo_tamaño;
         a->capacidad += nuevo_tamaño;
-    }
 
-
-    if (indice >= tamaño_original){
         *(a->data + indice) = valor;
+
     } else {
         for (int i = a->size -1; i > indice; i--){
             *(a->data + i) = *(a->data + i - 1);
