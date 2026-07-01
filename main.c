@@ -2,8 +2,22 @@
 #include "arreglos.h"
 #include "listas.h"
 #include "dlistas.h"
+#include"stack_arr.h"
 
 int main(void){
+    printf("========== STACK ==========\n");
+    StackArr stack;
+    sa_init(&stack, 3);
+    sa_push(&stack, 5);
+    sa_push(&stack, 4);
+    imprimir_arreglo(stack.arr);
+    int numero = sa_peek(&stack);
+    printf("%d\n", numero);
+    int numero2 = sa_pop(&stack);
+    printf("%d\n", numero2);
+    imprimir_arreglo(stack.arr);
+    sa_free(&stack);
+
     printf("========== ARREGLOS DINAMICOS ==========\n");
     DinaArray a = crear_arreglo(3);
     agregar_elemento(&a, 0, 10);
